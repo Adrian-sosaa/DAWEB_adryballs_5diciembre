@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarVenta/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numIdVenta" class="form-control" value="{{ miVenta.id_venta }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" value="{{ miVenta.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtHoraCompra" class="form-control" value="{{ miVenta.hora_compra }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <textarea name="txtContenido" class="form-control" required>{{ miVenta.contenido }}</textarea>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numCantidad" class="form-control" value="{{ miVenta.cantidad }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" step="0.01" name="numTotal" class="form-control" value="{{ miVenta.total }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNomCliente" class="form-control" value="{{ miVenta.nom_cliente }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" name="txtregis_final" class="form-control" value="{{ miVenta.reg_final }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numid_cliente" class="form-control" value="{{ miVenta.id_cliente }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numid_empleado" class="form-control" value="{{ miVenta.id_empleado }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numid_producto" class="form-control" value="{{ miVenta.id_producto }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numid_sucursal" class="form-control" value="{{ miVenta.id_sucursal }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

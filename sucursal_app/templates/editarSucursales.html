@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarSucursal/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_sucursal" class="form-control" value="{{ misSucursales.id_sucursal }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numEmpleados" class="form-control" value="{{ misSucursales.num_empleados }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" value="{{ misSucursales.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" value="{{ misSucursales.direccion }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtProductos" class="form-control" value="{{ misSucursales.productos }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numNumero_productos" class="form-control" value="{{ misSucursales.numero_productos }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" value="{{ misSucursales.Telefono }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
