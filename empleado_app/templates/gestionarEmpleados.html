@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>EMPLEADOS</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarEmpleado/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_empleado" class="form-control" placeholder="ID del empleado" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" placeholder="Nombre del empleado" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtCurp" class="form-control" placeholder="CURP" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numEdad" class="form-control" placeholder="Edad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtSexo" class="form-control" placeholder="Sexo" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtsucursal" class="form-control" placeholder="id_sucursal" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" name="txtfechaentr" class="form-control" placeholder="fecha ingreso" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Empleados</h1>
+        <img class="w-50" src="{% static  'img/empleado.jpeg' %}" alt="inicio" width="400" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>CURP</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Edad</th>
+                        <th>Sexo</th>
+                        <th>sucursal</th>
+                        <th>fecha de ingreso</th>
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in misEmpleados %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ empleado.id_empleado }}</td>
+                            <td>{{ empleado.nombre }}</td>
+                            <td>{{ empleado.curp }}</td>
+                            <td>{{ empleado.Telefono }}</td>
+                            <td>{{ empleado.direccion }}</td>
+                            <td>{{ empleado.edad }}</td>
+                            <td>{{ empleado.sexo }}</td>
+                            <td>{{ empleado.id_sucursal }}</td>
+                            <td>{{ empleado.feching }}</td>
+                            <td><a href="seleccionarEmpleado/{{ empleado.id_empleado }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarEmpleado/{{ empleado.id_empleado }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

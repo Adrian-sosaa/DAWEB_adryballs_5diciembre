@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>PRODUCTOS</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numCodigo" class="form-control" placeholder="id del producto" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" step="0.01" name="numPrecio" class="form-control" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numCantidad" class="form-control" placeholder="Cantidad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtCalidad" class="form-control" placeholder="Calidad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numsucursal" class="form-control" placeholder="id_sucursal" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numprov" class="form-control" placeholder="id_prov" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtmodeloo" class="form-control" placeholder="modelo" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtball" class="form-control" placeholder="tipo de balon" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Productos</h1>
+        <img class="w-50" src="{% static  'img/producto.jpg' %}" alt="inicio" width="400" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>id producto</th>
+                        <th>Nombre del producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad existente</th>
+                        <th>Calidad</th>
+                        <th>id_prov</th>
+                        <th>id_sucursal</th>
+                        <th>modelo</th>
+                        <th>tipo de balon</th>
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in misProductos %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ producto.codigo }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.precio }}</td>
+                            <td>{{ producto.cant_producto }}</td>
+                            <td>{{ producto.calidad }}</td>
+                            <td>{{ producto.id_prov }}</td>
+                            <td>{{ producto.id_sucursal }}</td>
+                            <td>{{ producto.modelo }}</td>
+                            <td>{{ producto.tipobalon }}</td>
+                            
+                            <td><a href="seleccionarProducto/{{ producto.codigo }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarProducto/{{ producto.codigo }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

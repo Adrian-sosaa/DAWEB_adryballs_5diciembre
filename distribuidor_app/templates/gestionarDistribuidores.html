@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>DISTRIBUIDORES</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarDistribuidor/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_distribuidor" class="form-control" placeholder="ID del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtProductos" class="form-control" placeholder="Productos" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numNie" class="form-control" placeholder="NIE" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="txtCantProducto" class="form-control" placeholder="Cantidad de Producto" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Distribuidores</h1>
+        <img class="w-50" src="{% static  'img/distribuidor.jpg' %}" alt="inicio" width="400" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Productos</th>
+                        <th>Dirección</th>
+                        <th>NIE</th>
+                        <th>Cantidad Producto</th>
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for distribuidor in misDistribuidores %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ distribuidor.id_distribuidor }}</td>
+                            <td>{{ distribuidor.nombre }}</td>
+                            <td>{{ distribuidor.telefono }}</td>
+                            <td>{{ distribuidor.productos }}</td>
+                            <td>{{ distribuidor.direccion }}</td>
+                            <td>{{ distribuidor.nie }}</td>
+                            <td>{{ distribuidor.cant_producto }}</td>
+                            <td><a href="seleccionarDistribuidor/{{ distribuidor.id_distribuidor }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarDistribuidor/{{ distribuidor.id_distribuidor }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

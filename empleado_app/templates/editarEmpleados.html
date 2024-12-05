@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarEmpleado/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_empleado" class="form-control" value="{{ misEmpleados.id_empleado }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" value="{{ misEmpleados.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtCurp" class="form-control" value="{{ misEmpleados.curp }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" value="{{ misEmpleados.Telefono }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" value="{{ misEmpleados.direccion }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numEdad" class="form-control" value="{{ misEmpleados.edad }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtSexo" class="form-control" value="{{ misEmpleados.sexo }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtsucursal" class="form-control" value="{{ misEmpleados.id_sucursal }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" name="txtfechaentr" class="form-control" value="{{ misEmpleados.feching }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

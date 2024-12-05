@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>CLIENTES</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarCliente/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_cliente" class="form-control" placeholder="ID del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" placeholder="Teléfono" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numProductos" class="form-control" placeholder="Número de productos adquiridos" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtTipoPago" class="form-control" placeholder="Tipo de pago" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" name="txtFechaNac" class="form-control" placeholder="Fecha de nacimiento" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Clientes</h1>
+        <img class="w-50" src="{% static  'img/cli.jpg' %}" alt="inicio" width="400" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Dirección</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Productos Adquiridos</th>
+                        <th>Tipo de Pago</th>
+                        <th>Fecha de Nac.</th>
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in misClientes %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ cliente.id_cliente }}</td>
+                            <td>{{ cliente.direccion }}</td>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.telefono }}</td>
+                            <td>{{ cliente.numero_productos_adquiridos }}</td>
+                            <td>{{ cliente.tipo_de_pago }}</td>
+                            <td>{{ cliente.fecha_nac }}</td>
+                            <td><a href="seleccionarCliente/{{ cliente.id_cliente }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarCliente/{{ cliente.id_cliente }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

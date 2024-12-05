@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numCodigo" class="form-control" value="{{ miProducto.codigo }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" value="{{ miProducto.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" step="0.01" name="numPrecio" class="form-control" value="{{ miProducto.precio }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numCantidad" class="form-control" value="{{ miProducto.cant_producto }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtCalidad" class="form-control" value="{{ miProducto.calidad }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numsucursal" class="form-control" value="{{ miProducto.id_sucursal }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numprov" class="form-control" value="{{ miProducto.id_prov }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtmodeloo" class="form-control" value="{{ miProducto.modelo }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtball" class="form-control" value="{{ miProducto.tipobalon }}" required>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

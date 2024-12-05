@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarDistribuidor/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_distribuidor" class="form-control" value="{{ misDistribuidores.id_distribuidor }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" value="{{ misDistribuidores.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTelefono" class="form-control" value="{{ misDistribuidores.telefono }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtProductos" class="form-control" value="{{ misDistribuidores.productos }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" value="{{ misDistribuidores.direccion }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numNie" class="form-control" value="{{ misDistribuidores.nie }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="txtCantProducto" class="form-control" value="{{ misDistribuidores.cant_producto }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
